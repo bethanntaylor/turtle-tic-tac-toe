@@ -1,3 +1,4 @@
+
 import turtle
 
 HORIZ_LINE_TOP = (-150,50)
@@ -62,60 +63,70 @@ def draw_o(x,y):
  
 player = ()
 num_moves_made = 0
-# full = False
-# won = False
+player1 = [draw_x, 'beth']
+player2 = [draw_o, 'markis']
 
-boxes = {'box1': False, 'box2': False, 'box3': False, 'box4': False, 'box5': False, 'box6': False, 'box7': False, 'box8': False, 'box9': False}
-num_moves_made = 0 
+boxes = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False, 7: False, 8: False, 9: False}
 
-
+win_ans = [(1,2,3), (4,5,6), (7,8,9), (1,4,7), (2,5,8), (3,6,9), (1,5,9), (3,5,7)]
 
 def draw_symbol(x,y):
 	print "x:",x, "y:",y
-	if(-150 <= x <= -50 and 50 <= y <= 150): # Square 1
-		player(-145,145) 
-		boxes['box1'] = True
-	elif(-50 <= x <= 50 and 50 <= y <= 150):	# Square 2
-		player(-40,145)
-		boxes['box2'] = True
-	elif(50 <= x <= 150 and 50 <= y <= 150):	# Square 3
-		player(55,145)
-		boxes['box3'] = True
-	elif(-150 <= x <= -50 and -50 <= y <= 50):	# Square 4
-		player(-145,45)
-		boxes['box4'] = True
-	elif(-50 <= x <= 50 and -50 <= y <= 50):	# Square 5
-		player(-40,45)
-		boxes['box5'] = True
-	elif(50 <= x <= 150 and -50 <= y <= 50):	# Square 6
-		player(55,45)
-		boxes['box6'] = True
-	elif(-150 <= x <= -50 and -150 <= y <= -50):	# Square 7
-		player(-145,-45)
-		boxes['box7'] = True
-	elif(-50 <= x <= 50 and -150 <= y <= -50):	# Square 8
-		player(-45,-45)
-		boxes['box8'] = True
-	elif(50 <= x <= 150 and -150 <= y <= -50):	# Square 9
-		player(55,-45)
-		boxes['box9'] = True
-	else:
-		exit()
-
-guess =()
-
-while (boxes['box1'] == False or boxes['box2'] == False):
-	if (num_moves_made%2 == 0):
-		player = draw_x
-	else:
-		player = draw_o
-	turtle.onscreenclick(draw_symbol)
+	global num_moves_made
 	num_moves_made += 1
-	# turtle.onscreenclick(draw_symbol)
+	if (num_moves_made % 2 == 0):
+		player = player1
+	else:
+		player = player2
 
-# or boxes['box3'] or boxes['box4'] or boxes['box5'] or boxes['box6'] or boxes['box7'] or boxes['box8'] or boxes['box9']
+	if(-150 <= x <= -50 and 50 <= y <= 150): # Square 1
+		player[0](-145,145) 
+		boxes[1] = player[1]
+	elif(-50 <= x <= 50 and 50 <= y <= 150):	# Square 2
+		player[0](-40,145)
+		boxes[2] = player[1]
+	elif(50 <= x <= 150 and 50 <= y <= 150):	# Square 3
+		player[0](60,145)
+		boxes[3] = player[1]
+	elif(-150 <= x <= -50 and -50 <= y <= 50):	# Square 4
+		player[0](-145,45)
+		boxes[4] = player[1]
+	elif(-50 <= x <= 50 and -50 <= y <= 50):	# Square 5
+		player[0](-40,45)
+		boxes[5] = player[1]
+	elif(50 <= x <= 150 and -50 <= y <= 50):	# Square 6
+		player[0](55,45)
+		boxes[6] = player[1]
+	elif(-150 <= x <= -50 and -150 <= y <= -50):	# Square 7
+		player[0](-145,-55)
+		boxes[7] = player[1]
+	elif(-50 <= x <= 50 and -150 <= y <= -50):	# Square 8
+		player[0](-45,-55)
+		boxes[8] = player[1]
+	elif(50 <= x <= 150 and -150 <= y <= -50):	# Square 9
+		player[0](55,-55)
+		boxes[9] = player[1]
+	
+	for i in range (8):
+		if (boxes[win_ans[i][0]] == player[1] and boxes[win_ans[i][1]] == player[1] and boxes[win_ans[i][2]] == player[1]):
+			rachel.penup()
+			rachel.goto(-145, 145)
+			rachel.pendown()
+			rachel.write(player[1] + ' is the winner!!!', font=('Arial', 30, 'normal'))
+		elif (False not in boxes.values()):
+			turtle.penup()
+			turtle.goto(-145, 145)
+			rachel.pendown()
+			turtle.write('Draw!', font=('Arial', 30, 'normal'))
 
-# turtle.onscreenclick(draw_symbol)
+
+turtle.onscreenclick(draw_symbol)
+
+# wn.onclick(draw_symbol) # Register function draw to the event mouse_click
+
+
+# wn.listen() # Begin listening to events like key_press & mouse_clicks
+#wn.mainloop()
 
 turtle.mainloop()	# Wait for user to close window
 # exitonclick()	# Wait for user to click before closing window
