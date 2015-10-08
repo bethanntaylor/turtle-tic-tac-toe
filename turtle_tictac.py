@@ -44,7 +44,7 @@ def draw_o(x,y):
 # 	rachel.pendown()
 # 	rachel.circle(40)
 
-# playername = raw_input('player X, enter your name: ')
+
 
 player1 = [draw_x, ' ']
 player2 = [draw_o, ' ']
@@ -62,6 +62,8 @@ win_ans = [(1,2,3), (4,5,6), (7,8,9), (1,4,7), (2,5,8), (3,6,9), (1,5,9), (3,5,7
 def draw_symbol(x,y):
 	print "x:",x, "y:",y
 	global num_moves_made
+	global winner 
+	winner = False
 	num_moves_made += 1
 	if (num_moves_made % 2 == 0):
 		player = player1
@@ -125,15 +127,16 @@ def draw_symbol(x,y):
 	
 	for i in range (8):
 		if (boxes[win_ans[i][0]] == player[1] and boxes[win_ans[i][1]] == player[1] and boxes[win_ans[i][2]] == player[1]):
+			winner = True 
 			rachel.penup()
 			rachel.goto(-240, 160)
 			rachel.pendown()
 			rachel.write(player[1] + ' is the winner!!!', font=('Arial', 45, 'normal'))
-		elif ('empty' not in boxes.values()):
-			rachel.penup()
-			rachel.goto(-145, 145)
-			rachel.pendown()
-			rachel.write('Draw!', font=('Arial', 30, 'normal'))
+	if ('empty' not in boxes.values() and winner == False):
+		rachel.penup()
+		rachel.goto(-145, 145)
+		rachel.pendown()
+		rachel.write('Draw!', font=('Arial', 30, 'normal'))
 
 
 turtle.onscreenclick(draw_symbol)
