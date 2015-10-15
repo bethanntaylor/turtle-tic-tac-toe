@@ -17,13 +17,19 @@ for i in range(4):
 def draw_x(x,y):
 	rachel.pencolor("pink")
 	rachel.penup()
-	rachel.setpos(x+10,y-90)
-	rachel.write('X', font=('Arial', 90, 'normal'))
-def draw_o(x,y):
-	rachel.pencolor("green")
+	rachel.setpos(x+5,y-5)
+	rachel.pendown()
+	rachel.setpos(x+75,y-75)
 	rachel.penup()
-	rachel.setpos(x+10,y-90)
-	rachel.write('O', font=('Arial', 90, 'normal'))
+	rachel.setpos(x+75, y-5)
+	rachel.pendown()
+	rachel.setpos(x+5,y-75)	
+def draw_o(x,y):
+	rachel.pencolor("blue")
+	rachel.penup()
+	rachel.setpos(x+30,y-80)
+	rachel.pendown()
+	rachel.circle(40)
 
 player1 = [draw_x, ' ']
 player2 = [draw_o, ' ']
